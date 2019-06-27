@@ -47,6 +47,8 @@ import { TooltipsComponent } from './tooltips.component';
 import { BaseRoutingModule } from './base-routing.module';
 import {UpperCaseTextDirective} from './../../directive/upper-case.directive';
 
+import { BulkComponentComponent } from './bulk-component.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -71,7 +73,8 @@ import {UpperCaseTextDirective} from './../../directive/upper-case.directive';
     PopoversComponent,
     ProgressComponent,
     TooltipsComponent,
-    UpperCaseTextDirective
+    UpperCaseTextDirective,
+    BulkComponentComponent
   ]
 })
 export class BaseModule { }

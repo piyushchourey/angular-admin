@@ -59,8 +59,8 @@ export const navItems: NavData[] = [
         icon: 'icon-puzzle'
       },
       {
-        name: 'Pagination',
-        url: '/base/paginations',
+        name: 'Bulk Upload',
+        url: '/user/bulk',
         icon: 'icon-puzzle'
       },
       {

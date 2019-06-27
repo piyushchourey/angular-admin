@@ -10,6 +10,7 @@ import { PaginationsComponent } from './paginations.component';
 import {PopoversComponent} from './popovers.component';
 import {ProgressComponent} from './progress.component';
 import {TooltipsComponent} from './tooltips.component';
+import { BulkComponentComponent } from './bulk-component.component';
 
 const routes: Routes = [
   {
@@ -37,10 +38,10 @@ const routes: Routes = [
         }
       },
       {
-        path: 'tables',
-        component: TablesComponent,
+        path: 'bulk',
+        component: BulkComponentComponent,
         data: {
-          title: 'Tables'
+          title: 'Bulk Upload'
         }
       },
       {
