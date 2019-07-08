@@ -15,7 +15,7 @@
                     </div>
                     <input type="text" class="form-control" placeholder="Username" formControlName="username" autocomplete="username" required>
                   </div>
-                  <div class="text-danger" *ngIf="(loginForm.get('username').touched || submitted) && loginForm.get('username').invalid">
+                  <div class="text-danger" *ngIf="submitted && loginForm.get('username').invalid">
                     <label class="error" *ngIf="loginForm.get('username').errors.required">*Username Id is required.</label>
                   </div>
                   <div class="input-group mb-4">
@@ -24,7 +24,7 @@
                     </div>
                     <input type="password" class="form-control" formControlName="password" placeholder="Password" autocomplete="current-password" required>
                   </div>
-                  <div class="text-danger" *ngIf="(loginForm.get('password').touched || submitted) && loginForm.get('password').invalid">
+                  <div class="text-danger" *ngIf="submitted && loginForm.get('password').invalid">
                     <label class="error" *ngIf="loginForm.get('password').errors.required">*Password is required.</label>
                   </div>
                   <div class="row">

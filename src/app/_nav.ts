@@ -51,17 +51,17 @@ export const navItems: NavData[] = [
       {
         name: 'Add',
         url: '/user/add',
-        icon: 'icon-puzzle'
+        icon: 'icon-note'
       },
       {
         name: 'List',
         url: '/user/list',
-        icon: 'icon-puzzle'
+        icon: 'icon-list'
       },
       {
         name: 'Bulk Upload',
         url: '/user/bulk',
-        icon: 'icon-puzzle'
+        icon: 'icon-cloud-upload'
       },
       {
         name: 'Popovers',

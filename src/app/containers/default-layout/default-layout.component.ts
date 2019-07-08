@@ -24,12 +24,14 @@ export class DefaultLayoutComponent implements OnDestroy {
       attributeFilter: ['class']
     });
   }
+  
+  logout():void{
+    this.service.logout();
+  }
 
   ngOnDestroy(): void {
     this.changes.disconnect();
   }
 
-  logout():void{
-  this.service.logout();
-  }
+ 
 }

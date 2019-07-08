@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../../service/common.service';
 import { Route, Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-bulk-component',
@@ -13,6 +14,7 @@ export class BulkComponentComponent implements OnInit {
   systemInfoData:any = [];
   constructor(
       private service: CommonService,
+      private toastr: ToastrService,
       public router: Router) { }
 
   ngOnInit() {
@@ -32,7 +34,7 @@ export class BulkComponentComponent implements OnInit {
   }
 
   onUpload() {
-    
+    this.uploadBtnDisable = true;
     const _formData = new FormData();
     _formData.append('file', this.selectedFile);
     let header = new HttpHeaders();
@@ -41,15 +43,17 @@ export class BulkComponentComponent implements OnInit {
       response=>{
         console.log(this.selectedFile);
         let result:any=response;
-        if(result.type=="fail"){
-          console.log(result.msg, 'Sorry!!');
+        if(result.type=="error"){
+          this.toastr.error(result.msg,'Sorry!');
         }
         else if(result.type=="tokenError"){
-          console.log(result.msg, 'Sorry!!');
+          this.toastr.warning(result.msg,'Opps!');
           this.router.navigate(['login']);
         }
         else{
+          this.toastr.success(result.msg,'Success!');
           this.systemInfoData = result.data;
+          this.router.navigate(['users/list']);
         }
       }, 
       (error :Response)=>{

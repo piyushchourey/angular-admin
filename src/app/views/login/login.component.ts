@@ -4,6 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { CommonService } from '../../service/common.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: 'login.component.html'
@@ -11,7 +13,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class LoginComponent {
   errorMsg:string;
   submitted = false;
-  constructor(private router: Router,private service: CommonService,private spinner: NgxSpinnerService){
+  constructor(private router: Router,
+              private service: CommonService,
+              private toastr: ToastrService,
+              private spinner: NgxSpinnerService,
+              private cookieService: CookieService ){
     if (this.service.getToken()) {
       this.router.navigate(['/dashboard']);
     }
@@ -28,19 +34,22 @@ export class LoginComponent {
     if (this.loginForm.invalid) {
         return;
     }
-    console.log(this.loginForm.value);
     this.service.postData('users/add',this.loginForm.value).subscribe(
     response=>{
       this.spinner.hide();
       let result:any=response;
-      if(result.type=="fail")
+      if(result.type=="error")
       {
-
-      }
+        this.toastr[result.type](result.msg,'Error');
+      }  
       else{
+        this.toastr[result.type](result.msg,'Success!');
         localStorage.setItem('token','5d039189056eb');
         localStorage.setItem('role','network');
-        this.router.navigate(['dashboard']);
+        this.cookieService.set('_sdata','5d039189056eb',0.25);
+        setTimeout(() => {
+          this.router.navigate(['dashboard']);
+        }, 1000);
         this.service.isLogin = true;
       }
     },

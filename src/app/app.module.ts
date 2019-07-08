@@ -21,6 +21,9 @@ import { DefaultLayoutComponent } from './containers';
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
+import { CookieService } from 'ngx-cookie-service';
+
+import { DataTablesModule } from 'angular-datatables';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
@@ -46,7 +49,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
 import { AuthGuard } from './guards/auth-guard.service';
 import { CommonService } from './service/common.service';
-
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   imports: [
     BrowserModule,
@@ -64,7 +67,9 @@ import { CommonService } from './service/common.service';
     FormsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot(), // ToastrModule added
+    DataTablesModule
   ],
   declarations: [
     AppComponent,
@@ -79,7 +84,7 @@ import { CommonService } from './service/common.service';
     },
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
     {provide: APP_BASE_HREF, useValue: '/'},
-    CommonService,AuthGuard 
+    CommonService,AuthGuard,CookieService 
   ],
   bootstrap: [ AppComponent ]
 })

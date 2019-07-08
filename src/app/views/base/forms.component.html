@@ -125,13 +125,14 @@
                     <div class="form-group">
                       <label for="name">Remark</label>
                       <input type="text" class="form-control" [ngClass]="submitted && f.teamName.errors ? 'is-invalid' :  f.teamName.value ? 'is-valid' : ''" formControlName="remark" id="name" placeholder="Remark">
+                      <input type="hidden" formControlName="_id">
                     </div>
                 </div>
               </div><!--/.row-->
               <div class="row">
                   <div class="col-md-2"></div>
                   <div class="col-md-4">
-                      <button class="btn btn-block btn-success" type="submit">Add User</button>
+                      <button class="btn btn-block btn-success" type="submit">{{ btnText }}</button>
                   </div>
                   <div class="col-md-4">
                       <button class="btn btn-block btn-danger" type="reset">Reset</button>

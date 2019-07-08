@@ -11,10 +11,12 @@ import {PopoversComponent} from './popovers.component';
 import {ProgressComponent} from './progress.component';
 import {TooltipsComponent} from './tooltips.component';
 import { BulkComponentComponent } from './bulk-component.component';
+import { AuthGuard } from '../../guards/auth-guard.service';
 
 const routes: Routes = [
   {
     path: '',
+    canActivate: [AuthGuard],
     data: {
       title: 'User'
     },
@@ -24,10 +26,19 @@ const routes: Routes = [
         redirectTo: 'cards'
       },
       {
+        path: 'add/:userId',
+        component: FormsComponent,
+        data: {
+          title: 'Edit',
+          btnText: 'Update User'
+        }
+      },
+      {
         path: 'add',
         component: FormsComponent,
         data: {
-          title: 'Add'
+          title: 'Add',
+          btnText: 'Add User'
         }
       },
       {

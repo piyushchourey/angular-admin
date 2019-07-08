@@ -5,6 +5,7 @@ import {catchError, retry , map, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AsyncValidatorFn, AbstractControl } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 const URL = 'http://localhost/imsApi/api/checkExist';
 const IPADRESSCHECKURL = 'http://localhost/imsApi/api/ipAdressCheckExist';
@@ -22,12 +23,13 @@ export class CommonService {
    public constructor(
       public http: HttpClient,
       public _router: Router,
-      public spinner: NgxSpinnerService) {
+      public spinner: NgxSpinnerService,
+      private cookieService: CookieService) {
   }
   
   getToken() { 
-    return (localStorage.getItem('token')!=null && localStorage.getItem('token')!="") ? true : false;
-  }
+    return (localStorage.getItem('token')!=null && localStorage.getItem('token')!="" && this.cookieService.get('_sdata')!="") ? true : false;
+  } 
 
   getData(postUrl):Observable<any>
   {

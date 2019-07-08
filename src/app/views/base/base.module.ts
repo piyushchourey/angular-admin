@@ -13,6 +13,7 @@ import { TablesComponent } from './tables.component';
 
 // Tabs Component
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ModalModule } from 'ngx-bootstrap';
 import { TabsComponent } from './tabs.component';
 
 // Carousel Component
@@ -48,6 +49,8 @@ import { BaseRoutingModule } from './base-routing.module';
 import {UpperCaseTextDirective} from './../../directive/upper-case.directive';
 
 import { BulkComponentComponent } from './bulk-component.component';
+import { DataTablesModule } from 'angular-datatables';
+
 
 @NgModule({
   imports: [
@@ -62,7 +65,9 @@ import { BulkComponentComponent } from './bulk-component.component';
     PaginationModule.forRoot(),
     PopoverModule.forRoot(),
     ProgressbarModule.forRoot(),
-    TooltipModule.forRoot()
+    ModalModule.forRoot(),
+    TooltipModule.forRoot(),
+    DataTablesModule
   ],
   declarations: [
     FormsComponent,
