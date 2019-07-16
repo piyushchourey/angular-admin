@@ -8,13 +8,12 @@ import { NgModule } from '@angular/core';
 
 import { FormsComponent } from './forms.component';
 
-import { SwitchesComponent } from './switches.component';
 import { TablesComponent } from './tables.component';
 
 // Tabs Component
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap';
-import { TabsComponent } from './tabs.component';
+
 
 // Carousel Component
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -29,7 +28,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 // Pagination Component
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { PopoversComponent } from './popovers.component';
+
 
 // Popover Component
 import { PopoverModule } from 'ngx-bootstrap/popover';
@@ -37,11 +36,9 @@ import { PaginationsComponent } from './paginations.component';
 
 // Progress Component
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
-import { ProgressComponent } from './progress.component';
 
 // Tooltip Component
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { TooltipsComponent } from './tooltips.component';
 
 
 // Components Routing
@@ -71,13 +68,8 @@ import { DataTablesModule } from 'angular-datatables';
   ],
   declarations: [
     FormsComponent,
-    SwitchesComponent,
     TablesComponent,
-    TabsComponent,
     PaginationsComponent,
-    PopoversComponent,
-    ProgressComponent,
-    TooltipsComponent,
     UpperCaseTextDirective,
     BulkComponentComponent
   ]

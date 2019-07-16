@@ -47,9 +47,17 @@ export const routes: Routes = [
         path: 'user',
         loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
       },
+      // {
+      //   path: 'Devices',
+      //   loadChildren: () => import('./views/devices/device.module').then(m => m.ButtonsModule)
+      // },
       {
         path: 'buttons',
         loadChildren: () => import('./views/buttons/buttons.module').then(m => m.ButtonsModule)
+      },
+      {
+        path: 'devices',
+        loadChildren: () => import('./views/devices/devices.module').then(m => m.DevicesModule)
       },
       {
         path: 'charts',
@@ -60,16 +68,8 @@ export const routes: Routes = [
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
-        path: 'icons',
-        loadChildren: () => import('./views/icons/icons.module').then(m => m.IconsModule)
-      },
-      {
         path: 'notifications',
         loadChildren: () => import('./views/notifications/notifications.module').then(m => m.NotificationsModule)
-      },
-      {
-        path: 'widgets',
-        loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
       }
     ]
   },

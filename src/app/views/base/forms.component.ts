@@ -13,8 +13,13 @@ export class FormsComponent {
   submitted: boolean = false;
   showOSSecretKey:boolean=false;
   showMSSecretKey:boolean=false;
+  showOSSecretKeyField:boolean = false;
   userId: any;
+  RAMArray:any = ["4GB","6GB","8GB","10GB","12GB","16GB","24GB"]; 
+  hardDiskArray: any = ["500GB","1TB","2TB","3TB"];
+  teamNameArray: any = ["QA",".NET","PHP","Java","Android","Salesforce","BD","HR","IT"];
   btnText : string = "Add User";
+  
   constructor(public service: CommonService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
@@ -38,12 +43,12 @@ export class FormsComponent {
     processor: new FormControl("",Validators.required),
     hardDisk: new FormControl("",Validators.required),
     tagging: new FormControl("",Validators.required),
-    osActive: new FormControl("",Validators.required),
+    osActive: new FormControl(""),
     osSecretKey: new FormControl(""),
     osName: new FormControl("",Validators.required),
     machineName: new FormControl("",Validators.required),
     msoffice: new FormControl("",Validators.required),
-    MSName: new FormControl("",Validators.required),
+    MSName: new FormControl(""),
     msSecretKey:new FormControl(""),
     officeNumber: new FormControl("",Validators.required),
     spare: new FormControl("",Validators.required),
@@ -72,26 +77,43 @@ export class FormsComponent {
 
     //MS office & OS office secret key show event..
   activationOnChange(event){
-      if(event.target.value == "Yes"){
+      if(event.target.value == "Yes" || event.target.value == "win"){
         if(event.target.id=="msoffice"){
           this.showMSSecretKey = true;
           this.form.get("msSecretKey").setValidators(Validators.required);
+          this.form.get("MSName").setValidators(Validators.required);
         }else{
           this.showOSSecretKey = true;
-          this.form.get("osSecretKey").setValidators(Validators.required);
+          this.form.get("osActive").setValidators(Validators.required);
         }
       }
       else{
-        this.showMSSecretKey = false;
-        this.showOSSecretKey = false;
-        this.form.get("osSecretKey").clearValidators();
-        this.form.get("msSecretKey").clearValidators();
+        if(event.target.id=="msoffice"){
+          this.showMSSecretKey = false;
+          this.form.get("msSecretKey").clearValidators();
+          this.form.get("MSName").clearValidators();
+        }else{
+          this.showOSSecretKey = false;
+          this.showOSSecretKeyField = false;
+          this.form.get("osActive").clearValidators();
+          this.form.get("osSecretKey").clearValidators();
+        }
       }
     }
+    OSActivationOnChange(event){
+      if(event.target.value == "Yes"){
+        if(event.target.id=="osActive"){
+          this.showOSSecretKeyField = true;
+          this.form.get("osSecretKey").setValidators(Validators.required);
+      }
+    }else {
+      this.showOSSecretKeyField = false;
+      this.form.get("osSecretKey").clearValidators();
+    }
+  }
 
     //Get User by id..
   getUserById(userId) {
-    console.log('get edit data -- '+userId);
     let param = { '_id':userId };
     this.service.postData('users/edit',param).subscribe(
       response=>{
@@ -100,14 +122,17 @@ export class FormsComponent {
           this.toastr.error('User not found!','Sorry!');
         }
         else{
-          if(result.data.msSecretKey)
+          console.log(result.data);
+          if(result.data.msoffice=="Yes")
             this.showMSSecretKey = true;
-          if(result.data.osSecretKey)
+          if((result.data.osName).indexOf('win')!== -1) 
             this.showOSSecretKey = true;
+          if(result.data.osActive == "Yes") 
+            this.showOSSecretKeyField = true;
           
           this.btnText = "Update User";
           this.form.controls['username'].disable();
-          console.log('get data '+result.data._id);
+          
           this.form.patchValue(result.data);
         }
       }, 

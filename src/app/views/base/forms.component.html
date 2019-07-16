@@ -33,7 +33,10 @@
                 <div class="col-sm-4">
                   <div class="form-group">
                     <label for="name">RAM</label>
-                    <input type="text" class="form-control" [UpperCase]="true" [ngClass]="submitted && f.ram.errors ? 'is-invalid' :  f.ram.value ? 'is-valid' : ''"  formControlName="ram" id="name" placeholder="e.g 4GB">
+                    <select class="form-control" id="ram" [ngClass]="submitted && f.ram.errors ? 'is-invalid' :  f.ram.value ? 'is-valid' : ''" formControlName="ram">
+                      <option value="">Select RAM</option>
+                      <option value="{{ ram }} " *ngFor="let ram of RAMArray">{{ ram }}</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-sm-4">
@@ -45,7 +48,10 @@
                 <div class="col-sm-4">
                   <div class="form-group">
                     <label for="name">Hard Disk</label>
-                    <input type="text" class="form-control" [UpperCase]="true" [ngClass]="submitted && f.hardDisk.errors ? 'is-invalid' :  f.hardDisk.value ? 'is-valid' : ''" formControlName="hardDisk" id="name" placeholder="e.g 1TB">
+                    <select class="form-control" id="ram" [ngClass]="submitted && f.hardDisk.errors ? 'is-invalid' :  f.hardDisk.value ? 'is-valid' : ''" formControlName="hardDisk">
+                      <option value="">Select Hard Disk</option>
+                      <option value="{{ hardDisk }} " *ngFor="let hardDisk of hardDiskArray">{{ hardDisk }}</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-sm-4">
@@ -60,6 +66,9 @@
                     <input type="text" class="form-control" formControlName="machineName" [ngClass]="submitted && f.machineName.errors ? 'is-invalid' :  f.machineName.value ? 'is-valid' : ''" placeholder="Machine Name">
                   </div>
                 </div>
+              </div><hr>
+              <p class="h6">MS Office Information :-</p><br>
+              <div class="row">
                 <div class="form-group col-sm-4">
                   <label for="ccmonth">MS Office/ Activate</label>
                   <select class="form-control" id="msoffice" (change)="activationOnChange($event)" [ngClass]="submitted && f.msoffice.errors ? 'is-invalid' :  f.msoffice.value ? 'is-valid' : ''" formControlName="msoffice">
@@ -74,32 +83,43 @@
                       <input type="text" class="form-control" [ngClass]="submitted && f.msSecretKey.errors ? 'is-invalid' :  f.msSecretKey.value ? 'is-valid' : ''" formControlName="msSecretKey"  placeholder="MS Office Key">
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4" *ngIf="showMSSecretKey">
                     <div class="form-group">
                       <label for="name">MS Office Name</label>
                       <input type="text" class="form-control" [ngClass]="submitted && f.MSName.errors ? 'is-invalid' :  f.MSName.value ? 'is-valid' : ''" formControlName="MSName" placeholder="MS Office Name">
                     </div>
                 </div>
-                <div class="form-group col-sm-4">
-                    <label for="ccmonth">OS Office/ Activate</label>
-                    <select class="form-control" id="osoffice" (change)="activationOnChange($event)" [ngClass]="submitted && f.osActive.errors ? 'is-invalid' :  f.osActive.value ? 'is-valid' : ''" formControlName="osActive">
+              </div><hr>
+                <p class="h6">OS Information :-</p><br>
+              <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="name">OS Name</label>
+                        <select class="form-control" (change)="activationOnChange($event)" id="osoffice" [ngClass]="submitted && f.osName.errors ? 'is-invalid' :  f.osName.value ? 'is-valid' : ''" formControlName="osName">
+                            <option value="">Select an option</option>
+                            <option value="win">Windows</option>
+                            <option value="mac">Mac</option>
+                            <option value="ubantu">Ubantu</option>
+                          </select>
+                      </div>
+                </div>
+                <div class="form-group col-sm-4" *ngIf="showOSSecretKey">
+                    <label for="ccmonth">OS / Activate</label>
+                    <select class="form-control" id="osActive" (change)="OSActivationOnChange($event)" [ngClass]="submitted && f.osActive.errors ? 'is-invalid' :  f.osActive.value ? 'is-valid' : ''" formControlName="osActive">
                       <option value="">Select an option</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
-                  </div>
-                <div class="col-sm-4" *ngIf="showOSSecretKey">
+                </div>
+                <div class="col-sm-4" *ngIf="showOSSecretKeyField">
                     <div class="form-group">
-                      <label for="name">OS Office Key</label>
-                      <input type="text" class="form-control" formControlName="osSecretKey" [ngClass]="submitted && f.osSecretKey.errors ? 'is-invalid' :  f.osSecretKey.value ? 'is-valid' : ''" placeholder="OS Office Key">
+                      <label for="name">OS Key</label>
+                      <input type="text" class="form-control" formControlName="osSecretKey" [ngClass]="submitted && f.osSecretKey.errors ? 'is-invalid' :  f.osSecretKey.value ? 'is-valid' : ''" placeholder="OS Key">
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                      <label for="name">OS Office Name</label>
-                      <input type="text" class="form-control" formControlName="osName" [ngClass]="submitted && f.osName.errors ? 'is-invalid' :  f.osName.value ? 'is-valid' : ''" placeholder="OS Office Name">
-                    </div>
-                </div>
+              </div>
+              <hr>
+                <div class="row">
                 <div class="form-group col-sm-4">
                     <label for="ccmonth">Office No.</label>
                     <select class="form-control" [ngClass]="submitted && f.officeNumber.errors ? 'is-invalid' :  f.officeNumber.value ? 'is-valid' : ''" formControlName="officeNumber">
@@ -118,13 +138,16 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                       <label for="name">Team Name</label>
-                      <input type="text" class="form-control" formControlName="teamName" [ngClass]="submitted && f.teamName.errors ? 'is-invalid' :  f.teamName.value ? 'is-valid' : ''" placeholder="Team Name">
+                      <select class="form-control" id="teamName" [ngClass]="submitted && f.teamName.errors ? 'is-invalid' :  f.teamName.value ? 'is-valid' : ''" formControlName="teamName">
+                        <option value="">Select a team</option>
+                        <option value="{{ teamName }} " *ngFor="let teamName of teamNameArray">{{ teamName }}</option>
+                      </select>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                       <label for="name">Remark</label>
-                      <input type="text" class="form-control" [ngClass]="submitted && f.teamName.errors ? 'is-invalid' :  f.teamName.value ? 'is-valid' : ''" formControlName="remark" id="name" placeholder="Remark">
+                      <input type="text" class="form-control" [ngClass]="submitted && f.remark.errors ? 'is-invalid' :  f.remark.value ? 'is-valid' : ''" formControlName="remark" id="name" placeholder="Remark">
                       <input type="hidden" formControlName="_id">
                     </div>
                 </div>

@@ -56,11 +56,10 @@ export class TablesComponent implements OnInit {
   }
 
   editUser(userId){
-    console.log('edit'+userId);
     this.router.navigate(['user/add/', userId]);
   }
   deleteUser(userId){ 
-    // this.primaryModal.show();
+    this.primaryModal.show();
     if(userId){
       let param = {"_id":userId}; 
       this.service.postData("users/delete",param).subscribe(response=>{
@@ -70,8 +69,7 @@ export class TablesComponent implements OnInit {
          }
          else{
           this.toastr.success(result.msg,'Success!');
-           console.log(result.data);
-         }
+        }
        });
     }else{
       this.toastr.error('Something went wrong.','Sorry!');

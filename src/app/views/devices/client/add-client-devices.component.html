@@ -1,0 +1,89 @@
+<div class="animated fadeIn">
+  <form class="" [formGroup]="clientDeviceForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <strong>Client Devices Information</strong>
+            <small>Form</small>
+          </div>
+          <div class="card-body"> 
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="name">Client Name</label>
+                  <input type="text" class="form-control"  [ngClass]="submitted && f.clientName.errors ? 'is-invalid' :  f.clientName.value ? 'is-valid' : ''"  formControlName="clientName" placeholder="Client Name">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="name">Device Name</label>
+                  <input type="text" class="form-control" [ngClass]="submitted && f.deviceName.errors ? 'is-invalid' :  f.deviceName.value ? 'is-valid' : ''"  formControlName="deviceName" placeholder="Device Name">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="name">Manufacturer</label>
+                  <input type="text" class="form-control" [ngClass]="submitted && f.manufacturer.errors ? 'is-invalid' :  f.manufacturer.value ? 'is-valid' : ''"  formControlName ="manufacturer" placeholder="Manufacturer">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="name">Model Number.</label>
+                  <input type="text" class="form-control"  [ngClass]="submitted && f.modelNumber.errors ? 'is-invalid' :  f.modelNumber.value ? 'is-valid' : ''"  formControlName="modelNumber" placeholder="Model Number">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="name">Received Date</label>
+                  <input type="text" bsDatepicker class="form-control"  [ngClass]="submitted && f.receivedDate.errors ? 'is-invalid' :  f.receivedDate.value ? 'is-valid' : ''"  formControlName="receivedDate" placeholder="Received Date">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="name">Purchase From</label>
+                  <input type="text" class="form-control"  [ngClass]="submitted && f.purchaseFrom.errors ? 'is-invalid' :  f.purchaseFrom.value ? 'is-valid' : ''"  formControlName="purchaseFrom" placeholder="Purchase From">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="name">Serial no.</label>
+                  <input type="text" class="form-control"  [ngClass]="submitted && f.serialNumber.errors ? 'is-invalid' :  f.serialNumber.value ? 'is-valid' : ''"  formControlName="serialNumber" placeholder="Serial Number">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="name">Remark 1</label>
+                  <input type="text" class="form-control"  [ngClass]="submitted && f.remark1.errors ? 'is-invalid' :  f.remark1.value ? 'is-valid' : ''"  formControlName="remark1" placeholder="Remark 1">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="name">Remark 2</label>
+                  <input type="text" class="form-control"  [ngClass]="submitted && f.remark2.errors ? 'is-invalid' :  f.remark2.value ? 'is-valid' : ''"  formControlName="remark2" placeholder="Remark 2">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="name">Wi-Fi Address</label>
+                  <input type="text" class="form-control"  [ngClass]="submitted && f.wifiAddress.errors ? 'is-invalid' :  f.wifiAddress.value ? 'is-valid' : ''"  formControlName="wifiAddress" placeholder="Wi-fi Address">
+                  <input type="hidden" formControlName="_id">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-4">
+                  <button class="btn btn-block btn-success" type="submit">Add Information</button>
+              </div>
+              <div class="col-md-4">
+                  <button class="btn btn-block btn-danger" type="reset">Reset</button>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+          </div>
+        </div>
+      </div><!--/.col-->
+    </div><!--/.row-->
+  </form>
+</div>

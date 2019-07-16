@@ -50,6 +50,7 @@ import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
 import { AuthGuard } from './guards/auth-guard.service';
 import { CommonService } from './service/common.service';
 import { ToastrModule } from 'ngx-toastr';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @NgModule({
   imports: [
     BrowserModule,
@@ -69,7 +70,7 @@ import { ToastrModule } from 'ngx-toastr';
     NgxSpinnerModule,
     HttpClientModule,
     ToastrModule.forRoot(), // ToastrModule added
-    DataTablesModule
+    DataTablesModule, BsDatepickerModule.forRoot()
   ],
   declarations: [
     AppComponent,

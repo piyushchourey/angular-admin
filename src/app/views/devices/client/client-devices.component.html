@@ -1,0 +1,50 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-computer"></i> Client Devices List
+        </div>
+        <div class="card-body">
+          <table datatable [dtOptions]="dtOptions" id="userTable" [dtTrigger]="dtTrigger" class="row-border hover">
+            <thead>
+              <tr>
+                <th>Client Name</th>
+                <th>Device Name</th>
+                <th>Manufacturer</th>
+                <th>Model Number</th>
+                <th>Received Date</th>
+                <th>purchaseFrom</th>
+                <th>serialNumber</th>
+                <th>Remark 1</th>
+                <th>Remark 2</th>
+                <th>Wifi Address</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let info of clientDevicesInfoData;">
+                <td>{{ info.clientName }}</td>
+                <td>{{ info.deviceName }}</td>
+                <td>{{ info.manufacturer }}</td>
+                <td>{{ info.modelNumber }}</td>
+                <td>{{ info.receivedDate }}</td>
+                <td>{{ info.purchaseFrom }}</td>
+                <td>{{ info.serialNumber }}</td>
+                <td>{{ info.remark1 }}</td>
+                <td>{{ info.remark2 }}</td>
+                <td>{{ info.wifiAddress }}</td>
+                <td>
+                    <a title="Edit" (click)="editClientDevice(info._id)"><i class="fa fa-pencil fa-lg mt-4"></i></a>
+                    <a title="Delete" (click)="deleteUser(info._id)"><i class="fa fa-trash fa-lg mt-4"></i></a>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>
